@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ct-bg: #0f172a;
+  --ct-surface: #1e293b;
+  --ct-border: #334155;
+}
+
+body {
+  background: var(--ct-bg);
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+/* CT 扫描线动画 */
+@keyframes ct-scan-line {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.ct-scan-line {
+  animation: ct-scan-line 4s ease-in-out infinite;
+}
+
+/* 发光效果 */
+.glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 60px rgba(59, 130, 246, 0.1);
+}
+
+.glow-sm {
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--ct-bg); }
+::-webkit-scrollbar-thumb { background: var(--ct-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* 卡片悬浮效果 */
+.card-hover {
+  transition: all 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* 渐变边框 */
+.gradient-border {
+  position: relative;
+  background: var(--ct-surface);
+  border-radius: 1rem;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #3b82f6, #06b6d4, #8b5cf6);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Canvas 容器 */
+.canvas-container canvas {
+  border-radius: 0.75rem;
+}
